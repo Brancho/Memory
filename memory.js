@@ -11,9 +11,17 @@ var app = (function(document){
   button.innerHTML = "hard";
   };
 
-
+  var flippedCards = [];
+  var numberOfMoves = 0;
 var flip = function(event) {
-  event.target.closest(".card").classList.toggle('clicked');
+  var flipped = event.target.closest(".card").classList.toggle('clicked');
+  flippedCards.push(flipped);
+  if (flippedCards.length == 2) {
+    numberOfMoves++;
+    document.getElementById("count").innerHTML = numberOfMoves;
+    flippedCards = [];
+  
+  }
 };
 
 var createCards = function() {
@@ -46,10 +54,19 @@ var newGame = function() {
 
 
   if (gameDifficulty == "easy") {
-    for(var i = 0; i < 16 ; i++) {
+    for(var i = 0; i < 4*4 ; i++) {
       createCards();
     }
-
+  }
+  else if (gameDifficulty == "medium") {
+    for(var i = 0; i < 6*6 ; i++) {
+      createCards();
+    }
+  }
+  else {
+    for(var i = 0; i < 8*8 ; i++) {
+      createCards();
+    }
   }
 
 

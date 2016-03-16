@@ -5,14 +5,16 @@
 }
 .page2 {
 
-  width: 60vw;
+  width: 80vw;
   height: 80vh;
   border: 5px solid #000000;
   background-color: #0072BB;
   border-radius: 30px;
   margin: 0 auto;
   margin-top: 3vh;
-  padding: 0 6vw;
+  padding: 2vh 2vw;
+  position: relative;
+
 }
 label {
   font-size: 3vw;
@@ -23,14 +25,14 @@ label {
   margin-left: 20vw;
   display: inline-block;
 }
-
-
-
+#count {
+  font-size: 3vw;
+}
 
 .card {
-	display: inline-block;
 	perspective: 1000;
-	margin: 3vh 3vh;
+	margin: 1vh 1vh;
+  float: left;
 }
 
 	.card.clicked .flipper {
@@ -38,15 +40,15 @@ label {
 	}
 
 .card, .front, .back {
-	width: 11vw;
-	height: 13vh;
+	width: 7em;
+	height: 7em;
 }
 
 .flipper {
 	transition: 0.6s;
 		transform-style: preserve-3d;
-    width: 11vw;
-  	height: 13vh;
+    width: 7em;
+  	height: 7em;
 	position: relative;
 }
 
@@ -56,8 +58,8 @@ label {
 	position: absolute;
 	top: 0;
 	left: 0;
-  width: 11vw;
-	height: 13vh;
+  width: 7em;
+	height: 7em;
 }
 
 .front {
