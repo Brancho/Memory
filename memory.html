@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>Memory game</title>
     <link rel="stylesheet" href="memory.css">
+    <link rel="stylesheet" href="game.css">
   </head>
   <body>
     <div class="page">
@@ -18,9 +19,25 @@
           </div>
         </div>
       </div>
+      <a href="#" class="play" onclick="app.newGame()">Play</a>
+    </div>
 
 
-      <a href="game.html" class="play" onclick="app.newGame()">Play</a>
+
+    <div class="outter">
+      <div class="timer">
+        <p>
+          TIME:
+          <label id="minutes">00</label>:<label id="seconds">00</label>
+        </p>
+      </div>
+      <div class="moves">
+      <p>
+        NUMBER OF MOVES:
+      </p>
+      </div>
+      <div class="page2">
+      </div>
     </div>
 
 

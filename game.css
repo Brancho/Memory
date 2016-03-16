@@ -1,11 +1,18 @@
+.outter {
+    width: 100vw;
+    height: 100vh;
+    display: none;
+}
 .page2 {
-  width: 80vw;
+
+  width: 60vw;
   height: 80vh;
   border: 5px solid #000000;
   background-color: #0072BB;
   border-radius: 30px;
   margin: 0 auto;
   margin-top: 3vh;
+  padding: 0 6vw;
 }
 label {
   font-size: 3vw;
@@ -23,7 +30,7 @@ label {
 .card {
 	display: inline-block;
 	perspective: 1000;
-	margin: 50px;
+	margin: 3vh 3vh;
 }
 
 	.card.clicked .flipper {
@@ -31,15 +38,15 @@ label {
 	}
 
 .card, .front, .back {
-	width: 320px;
-	height: 330px;
+	width: 11vw;
+	height: 13vh;
 }
 
 .flipper {
 	transition: 0.6s;
 		transform-style: preserve-3d;
-		width: 400px;
-		height: 400px;
+    width: 11vw;
+  	height: 13vh;
 	position: relative;
 }
 
@@ -49,8 +56,8 @@ label {
 	position: absolute;
 	top: 0;
 	left: 0;
-	width: 400px;
-	height: 330;
+  width: 11vw;
+	height: 13vh;
 }
 
 .front {
@@ -62,5 +69,5 @@ label {
 
 .back {
 	transform: rotateY(180deg);
-  background-color: blue;
+  background-color: #FFD034;
 }

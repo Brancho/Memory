@@ -11,17 +11,9 @@ var app = (function(document){
   button.innerHTML = "hard";
   };
 
-var button = document.getElementsByClassName("dropbtn")[0];
-function Game(name, difficulty, time, clicks) {
-  this.name = name;
-  this.difficulty = difficulty;
-  this.time = time;
-  this.clicks = clicks;
-};
-
 
 var flip = function(event) {
-  event.target.classList.toggle('clicked');
+  event.target.closest(".card").classList.toggle('clicked');
 };
 
 var createCards = function() {
@@ -32,8 +24,10 @@ var createCards = function() {
   var flipper = document.createElement('DIV');
   flipper.classList.add('flipper');
 
+
   var front = document.createElement('DIV');
   front.classList.add('front');
+
 
   var back = document.createElement('DIV');
   back.classList.add('back');
@@ -45,12 +39,18 @@ var createCards = function() {
 };
 
 var newGame = function() {
+  document.querySelector(".outter").style.display = "block";
+  document.querySelector(".page").style.display = "none";
   var playerName = document.getElementsByTagName("INPUT")[0].value;
   var gameDifficulty = button.innerHTML;
-    var player = new Game(playerName, gameDifficulty);
-    createCards();
 
-}
+
+  if (gameDifficulty == "easy") {
+    for(var i = 0; i < 16 ; i++) {
+      createCards();
+    }
+
+  }
 
 
     var minutesLabel = document.getElementById("minutes");
@@ -73,6 +73,10 @@ var newGame = function() {
             return valString;
         }
     }
+}
+
+
+
 
 
 
@@ -85,7 +89,6 @@ return {
   text2: text2,
   text3: text3,
   newGame: newGame,
-  Game: Game,
   createCards: createCards,
   flip: flip
 
