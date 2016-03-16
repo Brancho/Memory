@@ -13,26 +13,32 @@
   margin: 0 auto;
   margin-top: 3vh;
   padding: 2vh 2vw;
-  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
 
 }
 label {
   font-size: 3vw;
 }
-.timer, .moves{
-  width: 20vw;
+.timer, .moves, .player, .difficulty {
+  width: 10vw;
   height: 3vh;
-  margin-left: 20vw;
+  margin-left: 12vw;
   display: inline-block;
 }
-#count {
+#count, #difficulty, #player {
   font-size: 3vw;
+  
 }
 
 .card {
 	perspective: 1000;
 	margin: 1vh 1vh;
   float: left;
+  flex-shrink: 1;
 }
 
 	.card.clicked .flipper {

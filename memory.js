@@ -20,7 +20,7 @@ var flip = function(event) {
     numberOfMoves++;
     document.getElementById("count").innerHTML = numberOfMoves;
     flippedCards = [];
-  
+
   }
 };
 
@@ -51,19 +51,30 @@ var newGame = function() {
   document.querySelector(".page").style.display = "none";
   var playerName = document.getElementsByTagName("INPUT")[0].value;
   var gameDifficulty = button.innerHTML;
+  document.querySelector("#player").innerHTML = playerName;
 
 
   if (gameDifficulty == "easy") {
+    document.querySelector(".page2").style.maxWidth = "600px";
+    document.querySelector(".page2").style.maxHeight = "600px";
+    document.querySelector("#difficulty").innerHTML = "EASY";
+
     for(var i = 0; i < 4*4 ; i++) {
       createCards();
     }
   }
   else if (gameDifficulty == "medium") {
+    document.querySelector(".page2").style.minWidth = "800px";
+    document.querySelector(".page2").style.minHeight = "800px";
+    document.querySelector("#difficulty").innerHTML = "MEDIUM";
     for(var i = 0; i < 6*6 ; i++) {
       createCards();
     }
   }
   else {
+    document.querySelector(".page2").style.minWidth = "1350px";
+    document.querySelector(".page2").style.minHeight = "900px";
+    document.querySelector("#difficulty").innerHTML = "HARD";
     for(var i = 0; i < 8*8 ; i++) {
       createCards();
     }
