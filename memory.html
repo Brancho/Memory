@@ -6,6 +6,25 @@
     <link rel="stylesheet" href="memory.css">
   </head>
   <body>
+    <div class="page">
+      <div class="content">
+        <input type="text" name="name" value="Your name here"><br>
+        <div class="dropdown">
+          <button class="dropbtn">Select difficulty</button>
+          <div class="dropdown-content">
+            <a href="#" onclick="app.text1()">easy (4x4)</a>
+            <a href="#" onclick="app.text2()">medium (6x6)</a>
+            <a href="#" onclick="app.text3()">hard (8x8)</a>
+          </div>
+        </div>
+      </div>
+
+
+      <a href="game.html" class="play" onclick="app.newGame()">Play</a>
+    </div>
+
+
+
   <script type="text/javascript" src="memory.js">
   </script>
   </body>

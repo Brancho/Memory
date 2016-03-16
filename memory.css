@@ -1,0 +1,90 @@
+.page {
+  width: 80vw;
+  height: 80vh;
+  border: 5px solid #000000;
+  background-color: #0072BB;
+  border-radius: 30px;
+  margin: 0 auto;
+  margin-top: 7vh;
+}
+.content {
+  width: 30vw;
+  height: 30vh;
+  background-color: #FF4C3B;
+  margin: 0 auto;
+  margin-top: 20vh;
+  text-align: center;
+  border: 2px solid #FFD034;
+box-shadow: 0px 20px 31px 26px rgba(46,74,117,1);
+}
+input {
+  width: 15vw;
+  height: 5vh;
+  border: 2px solid white;
+  background-color: #FFD034;
+  text-align: center;
+  font-size: 19px;
+  margin: 5vh 0;
+}
+input:focus {
+  background-color: white;
+}
+.play {
+  display: block;
+  margin: 0 auto;
+  margin-top: 10vh;
+  width: 15vw;
+  background-color: #FFD034;
+  border-radius: 10px;
+  font-size: 3vw;
+  text-decoration: none;
+  text-align: center;
+  color: #000000;
+  padding: 10px;
+  border: 5px solid black;
+
+}
+.dropbtn {
+    background-color: #FFD034;
+    color: black;
+    padding: 16px;
+    font-size: 19px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin: 0 auto;
+    width: 20vw;
+    border: 2px solid white;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    width: 20vw;
+    margin: 0 auto;
+}
+
+.dropdown-content a {
+    color: #1500FF;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-weight: bold;
+    color:black;
+
+}
+.dropdown-content a:hover {background-color: #FFD034}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #4B3BFF;
+}

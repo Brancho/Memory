@@ -1,16 +1,5 @@
 var app = (function(document){
 
-  var button = document.getElementsByClassName("dropbtn")[0];
-  var text1 = function() {
-  button.innerHTML = "easy";
-  };
-  var text2 = function() {
-  button.innerHTML = "medium";
-  };
-  var text3 = function() {
-  button.innerHTML = "hard";
-  };
-
 var button = document.getElementsByClassName("dropbtn")[0];
 function Game(name, difficulty, time, clicks) {
   this.name = name;
@@ -81,9 +70,6 @@ var newGame = function() {
 
 
 return {
-  text1: text1,
-  text2: text2,
-  text3: text3,
   newGame: newGame,
   Game: Game,
   createCards: createCards,
@@ -93,3 +79,5 @@ return {
 }
 
 })(window.document);
+
+document.addEventListener("DOMContentLoaded", app.loadDoc);
