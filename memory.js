@@ -10,13 +10,13 @@ var app = (function(document){
   var text3 = function() {
   button.innerHTML = "hard";
   };
-
+  var gameCounts = {};
   var flippedCards = [];
   var numberOfMoves = 0;
   var levelEasy = ["green", "black", "yellow", "brown", "white", "purple", "red", "gray"];
   var levelMedium = ["#D490B2","#90D4B2", "#9090D4", "#90D4B2", "#FF7F24", "#36FF24", "#24A3FF", "FF24B2", "silver", "gold", "beige", "gray", "purple", "blue", "green", "red", "white", "black" ];
   var levelHard = []
-  var makeBackgrounds = function(gameArray, newArray) {
+  var makeBackgrounds = function(gameArray) {
     function shuffleArray(array) {
     for (var i = array.length - 1; i > 0; i--) {
         var j = Math.floor(Math.random() * (i + 1));
@@ -26,57 +26,54 @@ var app = (function(document){
     }
     return array;
 }
-  return newArray.push(shuffleArray(gameArray.concat(gameArray)));
+  return shuffleArray(gameArray.concat(gameArray));
 
   }
-  var level1 = [];
-  var level2 = [];
-  var level3 = [];
-
 
 var flip = function(event) {
   var flipped = event.target.closest(".card");
+
+  if(flipped.classList[1] === 'clicked'){
+    return;
+  }
   flipped.classList.toggle('clicked');
   flippedCards.push(flipped);
+
   if (flippedCards.length == 2) {
     numberOfMoves++;
     document.getElementById("count").innerHTML = numberOfMoves;
 
-    if(flippedCards[0].querySelector('.back').style.backgroundColor == flippedCards[1].querySelector('.back').style.backgroundColor) {
+    if(flippedCards[0].getAttribute('match') == flippedCards[1].getAttribute('match')) {
+      gameCounts.left -= 2;
       flippedCards[0].style.opacity = "0";
       flippedCards[1].style.opacity = "0";
       flippedCards[0].style.transition = "1s";
       flippedCards[1].style.transition = "1s";
+      if(gameCounts.left == 0){
+        endGame();
+        return;
+      }
     }
-
-
-
     setTimeout(function() {  arr.forEach(function(element){
           element.className = "card";
       });}, 1000);
 
     var bla = document.querySelectorAll(".clicked");
     var arr = Array.prototype.slice.call(bla);
-
-
-
-
-
-
     flippedCards = [];
-
   }
 };
-
 
 var createCards = function(color) {
 
   var card = document.createElement('DIV');
   card.classList.add('card');
+  card.setAttribute('match', color);
   card.addEventListener('click', app.flip);
 
   var flipper = document.createElement('DIV');
   flipper.classList.add('flipper');
+
 
 
   var front = document.createElement('DIV');
@@ -85,7 +82,7 @@ var createCards = function(color) {
 
   var back = document.createElement('DIV');
   back.classList.add('back');
-back.style.backgroundColor = color;
+  back.style.backgroundColor = color;
 
 
 
@@ -96,6 +93,8 @@ back.style.backgroundColor = color;
 };
 
 var newGame = function() {
+  var gameArray = [];
+
   document.querySelector(".outter").style.display = "block";
   document.querySelector(".page").style.display = "none";
   var playerName = document.getElementsByTagName("INPUT")[0].value;
@@ -107,27 +106,33 @@ var newGame = function() {
     document.querySelector(".page2").style.maxWidth = "600px";
     document.querySelector(".page2").style.maxHeight = "600px";
     document.querySelector("#difficulty").innerHTML = "EASY";
-    makeBackgrounds(levelEasy, level1);
+    gameArray = makeBackgrounds(levelEasy);
+    gameCounts.total = gameArray.length;
+    gameCounts.left = gameArray.length;
     for(var i = 0; i < 4*4 ; i++) {
-      createCards(level1[0][i]);
+      createCards(gameArray[i]);
     }
   }
   else if (gameDifficulty == "medium") {
     document.querySelector(".page2").style.minWidth = "800px";
     document.querySelector(".page2").style.minHeight = "800px";
     document.querySelector("#difficulty").innerHTML = "MEDIUM";
-    makeBackgrounds(levelMedium, level2);
+    gameArray = makeBackgrounds(levelMedium);
+    gameCounts.total = gameArray.length;
+    gameCounts.left = gameArray.length;
     for(var i = 0; i < 6*6 ; i++) {
-      createCards(level2[0][i]);
+      createCards(gameArray[i]);
     }
   }
   else {
     document.querySelector(".page2").style.minWidth = "1350px";
     document.querySelector(".page2").style.minHeight = "900px";
     document.querySelector("#difficulty").innerHTML = "HARD";
-    makeBackgrounds(levelHard, level3);
+    gameArray = makeBackgrounds(levelHard);
+    gameCounts.total = gameArray.length;
+    gameCounts.left = gameArray.length;
     for(var i = 0; i < 8*8 ; i++) {
-      createCards(level3[0][i]);
+      createCards(gameArray[i]);
     }
   }
 
@@ -154,6 +159,12 @@ var newGame = function() {
     }
 }
 
+var endGame = function() {
+  var modal = document.querySelector(".modalDialog");
+  modal.style.opacity = "1";
+  modal.style.pointerEvents = "auto";
+}
+
 
 
 
@@ -170,7 +181,10 @@ return {
   newGame: newGame,
   makeBackgrounds: makeBackgrounds,
   createCards: createCards,
-  flip: flip
+  flip: flip,
+  endGame: endGame
+
+
 
 
 }
