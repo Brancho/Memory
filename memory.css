@@ -91,22 +91,6 @@ input:focus {
     background-color: #4B3BFF;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .modalDialog {
 	position: fixed;
 	font-family: Arial, Helvetica, sans-serif;
@@ -130,8 +114,14 @@ input:focus {
 	margin: 15% auto;
 	padding: 5px 20px 13px 20px;
 	border-radius: 10px;
-	background: #fff;
-	background: -moz-linear-gradient(#fff, #999);
-	background: -webkit-linear-gradient(#fff, #999);
-	background: -o-linear-gradient(#fff, #999);
+background-color: #FFD034;
+border: 5px solid #FF4C3B;
+text-align: center;
+}
+
+#fb, #twitter {
+  width: 70px;
+  height: 70px;
+  margin-left: 20px;
+  margin-bottom: 20px;
 }

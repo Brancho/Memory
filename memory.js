@@ -100,12 +100,14 @@ var newGame = function() {
   var playerName = document.getElementsByTagName("INPUT")[0].value;
   var gameDifficulty = button.innerHTML;
   document.querySelector("#player").innerHTML = playerName;
+  document.querySelector("#finalPlayer").innerHTML = playerName;
 
 
   if (gameDifficulty == "easy") {
     document.querySelector(".page2").style.maxWidth = "600px";
     document.querySelector(".page2").style.maxHeight = "600px";
     document.querySelector("#difficulty").innerHTML = "EASY";
+    document.querySelector("#finalDifficulty").innerHTML = "EASY";
     gameArray = makeBackgrounds(levelEasy);
     gameCounts.total = gameArray.length;
     gameCounts.left = gameArray.length;
@@ -117,6 +119,7 @@ var newGame = function() {
     document.querySelector(".page2").style.minWidth = "800px";
     document.querySelector(".page2").style.minHeight = "800px";
     document.querySelector("#difficulty").innerHTML = "MEDIUM";
+    document.querySelector("#finalDifficulty").innerHTML = "MEDIUM";
     gameArray = makeBackgrounds(levelMedium);
     gameCounts.total = gameArray.length;
     gameCounts.left = gameArray.length;
@@ -128,6 +131,7 @@ var newGame = function() {
     document.querySelector(".page2").style.minWidth = "1350px";
     document.querySelector(".page2").style.minHeight = "900px";
     document.querySelector("#difficulty").innerHTML = "HARD";
+    document.querySelector("#finalDifficulty").innerHTML = "HARD";
     gameArray = makeBackgrounds(levelHard);
     gameCounts.total = gameArray.length;
     gameCounts.left = gameArray.length;
@@ -140,7 +144,7 @@ var newGame = function() {
     var minutesLabel = document.getElementById("minutes");
     var secondsLabel = document.getElementById("seconds");
     var totalSeconds = 0;
-    setInterval(setTime, 1000);
+    interval = setInterval(setTime, 1000);
     function setTime(){
         ++totalSeconds;
         secondsLabel.innerHTML = pad(totalSeconds%60);
@@ -159,8 +163,19 @@ var newGame = function() {
     }
 }
 
+var interval = undefined;
+var stopTime = function() {
+  clearTimeout(interval);
+}
+
 var endGame = function() {
+  var count = document.querySelector("#count").innerHTML;
+  document.querySelector("#finalNOM").innerHTML = count;
+  var minutes = document.getElementById("minutes").innerHTML;
+  var seconds = document.getElementById("seconds").innerHTML;
+  document.querySelector("#finalTime").innerHTML = minutes + ":" + seconds;
   var modal = document.querySelector(".modalDialog");
+  stopTime();
   modal.style.opacity = "1";
   modal.style.pointerEvents = "auto";
 }
@@ -182,7 +197,8 @@ return {
   makeBackgrounds: makeBackgrounds,
   createCards: createCards,
   flip: flip,
-  endGame: endGame
+  endGame: endGame,
+  stopTime, stopTime
 
 
 
