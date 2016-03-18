@@ -5,7 +5,7 @@
     <title>Memory game</title>
     <link rel="stylesheet" href="memory.css">
     <link rel="stylesheet" href="game.css">
-    <script src="http://crypto-js.googlecode.com/svn/tags/3.0.2/build/rollups/md5.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
   </head>
   <body>
     <div class="page">
@@ -50,12 +50,6 @@
       </div>
       <div class="page2">
 
-
-
-
-
-
-
         <div id="openModal" class="modalDialog">
           <div>
             <h1>Well done!</h1>
@@ -70,21 +64,59 @@
             <a class="twitter-share-button"
             href="https://twitter.com/intent/tweet?text=Hello%20world"
             data-size="large"><img src="twitter.png" id="twitter" /></a><br>
-            <button type="button" id="HSButton">HIGH SCORES</button>
+            <button type="button" id="HSButton" onclick="app.highScores()">HIGH SCORES</button>
           </div>
         </div>
 
 
-
-
-
-
-
-
-
       </div>
     </div>
+<div class="page3">
+  <div id="easyScores">
+    <ol>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ol>
+  </div>
+  <div id="mediumScores">
+    <ol>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ol>
+  </div>
+  <div id="hardScores">
+    <ol>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ol>
+  </div>
 
+</div>
+<button type="button" id="newGame" onclick="app.mainScreen()">NEW GAME</button>
 
 
   <script type="text/javascript" src="memory.js">

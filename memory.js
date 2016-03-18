@@ -13,8 +13,8 @@ var app = (function(document){
   var gameCounts = {};
   var flippedCards = [];
   var numberOfMoves = 0;
-  var levelEasy = ["green", "black", "yellow", "brown", "white", "purple", "red", "gray"];
-  var levelMedium = ["#D490B2","#90D4B2", "#9090D4", "#90D4B2", "#FF7F24", "#36FF24", "#24A3FF", "FF24B2", "silver", "gold", "beige", "gray", "purple", "blue", "green", "red", "white", "black" ];
+  var levelEasy = ["fa fa-bluetooth fa-5x", "fa fa-fort-awesome fa-5x", "fa fa-reddit-alien fa-5x", "fa fa-hashtag fa-5x", "fa fa-bolt fa-5x", "fa fa-diamond fa-5x", "fa fa-coffee fa-5x", "fa fa-gift fa-5x"];
+  var levelMedium = ["fa fa-heart fa-5x","fa fa-twitter fa-5x", "fa fa-tripadvisor fa-5x", "fa fa-slack fa-5x", "fa fa-reddit-alien fa-5x", "fa fa-pagelines fa-5x", "fa fa-github-square fa-5x", "fa fa-optin-monster fa-5x", "fa fa-drupal fa-5x", "fa fa-codepen fa-5x", "fa fa-fort-awesome fa-5x", "fa fa-venus fa-5x", "fa fa-mercury fa-5x", "fa fa-mars fa-5x", "fa fa-rocket fa-5x", "fa fa-university fa-5x", "fa fa-paper-plane-o fa-5x", "fa fa-moon-o fa-5x" ];
   var levelHard = []
   var makeBackgrounds = function(gameArray) {
     function shuffleArray(array) {
@@ -74,27 +74,27 @@ var createCards = function(color) {
   var flipper = document.createElement('DIV');
   flipper.classList.add('flipper');
 
-
-
   var front = document.createElement('DIV');
   front.classList.add('front');
 
 
   var back = document.createElement('DIV');
   back.classList.add('back');
-  back.style.backgroundColor = color;
 
+  var icon = document.createElement('I');
+  icon.setAttribute("class",color);
 
 
   card.appendChild(flipper);
   flipper.appendChild(front);
   flipper.appendChild(back);
+  back.appendChild(icon);
   document.querySelector('.page2').appendChild(card);
 };
 
 var newGame = function() {
   var gameArray = [];
-
+  numberOfMoves = "0";
   document.querySelector(".outter").style.display = "block";
   document.querySelector(".page").style.display = "none";
   var playerName = document.getElementsByTagName("INPUT")[0].value;
@@ -178,6 +178,27 @@ var endGame = function() {
   stopTime();
   modal.style.opacity = "1";
   modal.style.pointerEvents = "auto";
+};
+var NOM = document.querySelector("#count").innerHTML;
+var highScores = function() {
+  document.querySelector("#newGame").style.display = "block";
+  document.querySelector("#difficulty").innerHTML = "";
+  document.getElementsByTagName("INPUT")[0].value = "PLAYER"
+  document.querySelector(".outter").style.display = "none";
+  document.querySelector(".page3").style.display = "block";
+  document.querySelector(".modalDialog").style.opacity = "0";
+  document.querySelector(".modalDialog").style.pointerEvents = "none";
+  document.querySelector(".dropbtn").innerHTML = "Select difficulty";
+  var card = document.querySelectorAll(".card");
+  for(var i = 0; i < card.length; i++){
+  document.getElementsByClassName("page2")[0].removeChild(card[i]);
+}
+};
+
+var mainScreen = function() {
+  document.querySelector("#newGame").style.display = "none"
+  document.querySelector(".page3").style.display = "none";
+  document.querySelector(".page").style.display = "block";
 }
 
 
@@ -198,7 +219,9 @@ return {
   createCards: createCards,
   flip: flip,
   endGame: endGame,
-  stopTime, stopTime
+  stopTime: stopTime,
+  highScores: highScores,
+  mainScreen: mainScreen
 
 
 

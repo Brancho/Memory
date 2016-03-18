@@ -31,7 +31,7 @@ label {
 }
 #count, #difficulty, #player {
   font-size: 3vw;
-  
+
 }
 
 .card {
@@ -39,6 +39,7 @@ label {
 	margin: 1vh 1vh;
   float: left;
   flex-shrink: 1;
+
 }
 
 	.card.clicked .flipper {
@@ -66,16 +67,17 @@ label {
 	left: 0;
   width: 7em;
 	height: 7em;
+  box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
 }
 
 .front {
 	z-index: 2;
 	transform: rotateY(0deg);
-  background-color: red;
+  background-color: #FF4C3B;
 }
 
 
 .back {
 	transform: rotateY(180deg);
-  background-color: #FFD034;
+  background-color: #C6C8CA;
 }
