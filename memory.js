@@ -13,6 +13,7 @@ var app = (function(document){
   var gameCounts = {};
   var flippedCards = [];
   var numberOfMoves = 0;
+  document.getElementById("count").innerHTML = numberOfMoves;
   var levelEasy = ["fa fa-bluetooth fa-5x", "fa fa-fort-awesome fa-5x", "fa fa-reddit-alien fa-5x", "fa fa-hashtag fa-5x", "fa fa-bolt fa-5x", "fa fa-diamond fa-5x", "fa fa-coffee fa-5x", "fa fa-gift fa-5x"];
   var levelMedium = ["fa fa-heart fa-5x","fa fa-twitter fa-5x", "fa fa-tripadvisor fa-5x", "fa fa-slack fa-5x", "fa fa-reddit-alien fa-5x", "fa fa-pagelines fa-5x", "fa fa-github-square fa-5x", "fa fa-optin-monster fa-5x", "fa fa-drupal fa-5x", "fa fa-codepen fa-5x", "fa fa-fort-awesome fa-5x", "fa fa-venus fa-5x", "fa fa-mercury fa-5x", "fa fa-mars fa-5x", "fa fa-rocket fa-5x", "fa fa-university fa-5x", "fa fa-paper-plane-o fa-5x", "fa fa-moon-o fa-5x" ];
   var levelHard = []
@@ -50,6 +51,7 @@ var flip = function(event) {
       flippedCards[0].style.transition = "1s";
       flippedCards[1].style.transition = "1s";
       if(gameCounts.left == 0){
+        flippedCards = [];
         endGame();
         return;
       }
@@ -91,6 +93,7 @@ var createCards = function(color) {
   back.appendChild(icon);
   document.querySelector('.page2').appendChild(card);
 };
+
 
 var newGame = function() {
   var gameArray = [];
@@ -181,6 +184,7 @@ var endGame = function() {
 };
 var NOM = document.querySelector("#count").innerHTML;
 var highScores = function() {
+  document.getElementById("count").innerHTML = 0;
   document.querySelector("#newGame").style.display = "block";
   document.querySelector("#difficulty").innerHTML = "";
   document.getElementsByTagName("INPUT")[0].value = "PLAYER"
