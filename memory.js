@@ -94,16 +94,16 @@ var createCards = function(color) {
   document.querySelector('.page2').appendChild(card);
 };
 
-
+var playerName = undefined;
 var newGame = function() {
   var gameArray = [];
   numberOfMoves = "0";
   document.querySelector(".outter").style.display = "block";
   document.querySelector(".page").style.display = "none";
-  var playerName = document.getElementsByTagName("INPUT")[0].value;
+  playerName = document.getElementsByTagName("INPUT")[0].value;
   var gameDifficulty = button.innerHTML;
   document.querySelector("#player").innerHTML = playerName;
-  document.querySelector("#finalPlayer").innerHTML = playerName;
+
 
 
   if (gameDifficulty == "easy") {
@@ -176,11 +176,15 @@ var endGame = function() {
   document.querySelector("#finalNOM").innerHTML = count;
   var minutes = document.getElementById("minutes").innerHTML;
   var seconds = document.getElementById("seconds").innerHTML;
-  document.querySelector("#finalTime").innerHTML = minutes + ":" + seconds;
+  var totalTime = minutes + ":" + seconds;
+  document.querySelector("#finalTime").innerHTML = totalTime;
+  document.querySelector("#finalPlayer").innerHTML = playerName;
   var modal = document.querySelector(".modalDialog");
+  var difficulty = document.querySelector("#finalDifficulty").innerHTML;
   stopTime();
   modal.style.opacity = "1";
   modal.style.pointerEvents = "auto";
+  calculateHighScore(totalTime,count);
 };
 var NOM = document.querySelector("#count").innerHTML;
 var highScores = function() {
@@ -205,6 +209,17 @@ var mainScreen = function() {
   document.querySelector(".page").style.display = "block";
 }
 
+var storage = function(player, res) {
+  localStorage.setItem("playerName", player);
+  localStorage.setItem("playerResult", res);
+};
+
+var calculateHighScore = function(time, numberOfMoves) {
+  var timeInSec = (Number(time.slice(1, 2))*60) + Number(time.slice(3, 5));
+  var res = (Math.round((1 / timeInSec) * (1 / numberOfMoves) * 1000000));
+  storage(playerName, res);
+};
+
 
 
 
@@ -225,7 +240,9 @@ return {
   endGame: endGame,
   stopTime: stopTime,
   highScores: highScores,
-  mainScreen: mainScreen
+  mainScreen: mainScreen,
+  storage: storage,
+  calculateHighScore: calculateHighScore
 
 
 
