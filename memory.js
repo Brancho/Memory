@@ -210,8 +210,14 @@ var mainScreen = function() {
 }
 
 var storage = function(player, res) {
-  localStorage.setItem("playerName", player);
-  localStorage.setItem("playerResult", res);
+  if(!localStorage.getItem("highScores")) {
+    localStorage.setItem("highScores", JSON.stringify([]))
+  }
+  var scores = JSON.parse(localStorage.getItem("highScores"));
+  scores.push({name: player, score: res});
+  localStorage.setItem("highScores", JSON.stringify(scores))
+  var HS = JSON.parse(localStorage.getItem('highScores'));
+  postHighScores(HS);
 };
 
 var calculateHighScore = function(time, numberOfMoves) {
@@ -220,7 +226,18 @@ var calculateHighScore = function(time, numberOfMoves) {
   storage(playerName, res);
 };
 
+var postHighScores = function(HS) {
+var sorted = HS.sort(function(a, b) {
+	return b.score - a.score;
+});
+console.log(sorted);
+var list ='';
+for(var i = 0; i < 11; i++){
+  list += "<li>" + sorted[i].name + "    " + sorted[i].score + "</li>";
+}
+document.querySelector(".easyList").innerHTML = list;
 
+};
 
 
 
@@ -242,7 +259,9 @@ return {
   highScores: highScores,
   mainScreen: mainScreen,
   storage: storage,
-  calculateHighScore: calculateHighScore
+  calculateHighScore: calculateHighScore,
+  postHighScores: postHighScores
+
 
 
 
