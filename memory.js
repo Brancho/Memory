@@ -209,34 +209,71 @@ var mainScreen = function() {
   document.querySelector(".page").style.display = "block";
 }
 
-var storage = function(player, res) {
-  if(!localStorage.getItem("highScores")) {
-    localStorage.setItem("highScores", JSON.stringify([]))
+var storage = function(player, res, diff) {
+
+  if(diff == "EASY") {
+    if(!localStorage.getItem("highScoresEasy")) {
+      localStorage.setItem("highScoresEasy", JSON.stringify([]))
+    }
+    var scores = JSON.parse(localStorage.getItem("highScoresEasy"));
+    scores.push({name: player, score: res});
+    localStorage.setItem("highScoresEasy", JSON.stringify(scores))
+    var HSe = JSON.parse(localStorage.getItem('highScoresEasy'));
+    console.log(HSe);
+      postHighScores(HSe);
   }
-  var scores = JSON.parse(localStorage.getItem("highScores"));
-  scores.push({name: player, score: res});
-  localStorage.setItem("highScores", JSON.stringify(scores))
-  var HS = JSON.parse(localStorage.getItem('highScores'));
-  postHighScores(HS);
+
+  else if(diff == "MEDIUM") {
+    if(!localStorage.getItem("highScoresMedium")) {
+      localStorage.setItem("highScoresMedium", JSON.stringify([]))
+    }
+    var scores = JSON.parse(localStorage.getItem("highScoresMedium"));
+    scores.push({name: player, score: res});
+    localStorage.setItem("highScoresMedium", JSON.stringify(scores))
+    var HSm = JSON.parse(localStorage.getItem('highScoresMedium'));
+      postHighScores(HSm);
+  } else {
+    if(!localStorage.getItem("highScoresHard")) {
+      localStorage.setItem("highScoresHard", JSON.stringify([]))
+    }
+    var scores = JSON.parse(localStorage.getItem("highScoresHard"));
+    scores.push({name: player, score: res});
+    localStorage.setItem("highScoresHard", JSON.stringify(scores))
+    var HSh = JSON.parse(localStorage.getItem('highScoresHard'));
+      postHighScores(HSh);
+}
 };
 
 var calculateHighScore = function(time, numberOfMoves) {
+
   var timeInSec = (Number(time.slice(1, 2))*60) + Number(time.slice(3, 5));
   var res = (Math.round((1 / timeInSec) * (1 / numberOfMoves) * 1000000));
-  storage(playerName, res);
+  var diff = document.querySelector("#finalDifficulty").innerHTML;
+  storage(playerName, res, diff);
 };
 
 var postHighScores = function(HS) {
-var sorted = HS.sort(function(a, b) {
-	return b.score - a.score;
-});
-console.log(sorted);
-var list ='';
-for(var i = 0; i < 11; i++){
-  list += "<li>" + sorted[i].name + "    " + sorted[i].score + "</li>";
-}
-document.querySelector(".easyList").innerHTML = list;
+  var sorted = HS.sort(function(a, b) {
+  	return b.score - a.score;
+  });
+  list = '';
+  var list ='';
+  for(var i = 0; i < sorted.length && i < 10; i++){
+    list += "<li>" + sorted[i].name + "    " + sorted[i].score + "</li><br>";
 
+  }
+  if(document.querySelector("#finalDifficulty").innerHTML == "EASY") {
+    return document.querySelector(".easyList").innerHTML = list;
+
+  }
+  else if (document.querySelector("#finalDifficulty").innerHTML == "MEDIUM") {
+    return document.querySelector(".mediumList").innerHTML = list;
+
+
+  }
+  else {
+    return document.querySelector(".hardList").innerHTML = list;
+  }
 };
 
 

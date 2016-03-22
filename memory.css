@@ -171,3 +171,6 @@ text-align: center;
   margin: 10px 0 0 15px;
 
   }
+  li, h1 {
+    text-align: center;
+  }
